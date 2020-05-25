@@ -1,0 +1,26 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+.signingUpIn {
+  display: flex;
+  flex-direction: row;
+  border: solid black 2px;
+  position: absolute;
+  bottom: 0;
+}
+
+nav {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.availabilityForm {
+  width: fit-content;
+  border: solid black 2px;
+  display: flex;
+  flex-direction: column;
+}

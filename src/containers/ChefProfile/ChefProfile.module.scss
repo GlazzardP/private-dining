@@ -1,0 +1,14 @@
+.ChefProfile {
+  border: solid 2px gray;
+  border-radius: 2px;
+  display: flex;
+  flex-direction: row;
+  // background-color: red;
+  width: fit-content;
+
+  div {
+    border: solid red 4px;
+    display: flex;
+    flex-direction: column;
+  }
+}
