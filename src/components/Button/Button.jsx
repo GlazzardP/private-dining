@@ -2,10 +2,10 @@ import React from "react";
 import styles from "./Button.module.scss";
 
 const Button = (props) => {
-  const { btnText } = props;
+  const { btnText, handleclick } = props;
   return (
     <div className={styles.Button}>
-      <p>{btnText}</p>
+      <p onClick={handleclick}>{btnText}</p>
     </div>
   );
 };

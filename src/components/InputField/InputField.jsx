@@ -9,7 +9,7 @@ const InputField = (props) => {
       placeholder={placeholder}
       type={type}
       className={styles.InputField}
-      handleInput={handleInput}
+      onChange={handleInput}
       onInput={(event) => selectInput(event.target.value)}
       value={value}
     />
