@@ -5,13 +5,28 @@ import ChefProfile from "../ChefProfile";
 import InputLabel from "../../components/InputLabel";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
-import firestore from "../../firebase";
+import { firestore } from "../../firebase";
 
 const AvailableChefs = (props) => {
   const { signIn, signOut, user, addToDb } = props;
   const [formValues, setFormValues] = useState({});
 
   const userJsx = user ? <p>User exist</p> : <p>Nope</p>;
+
+  const getAllChefs = () => {
+    firestore
+      .collection("chefs")
+      .get()
+      .then((querySnapshot) => {
+        let allChefs = [];
+        querySnapshot.forEach((doc) => {
+          console.log(doc.id, " => ", doc.data());
+          allChefs.push(doc);
+        });
+        console.log(allChefs);
+      });
+  };
+  getAllChefs();
 
   return (
     <>
@@ -25,6 +40,13 @@ const AvailableChefs = (props) => {
         }}
       /> */}
 
+      <Button
+        btnText="Get all chefs back"
+        handleclick={() => {
+          getAllChefs();
+        }}
+      />
+
       {userJsx}
       <section className={styles.AvailableChefs}>
         <section className={styles.availableSearch}>
@@ -33,7 +55,7 @@ const AvailableChefs = (props) => {
               <InputLabel labelName="No. of people" />
               <InputField
                 type="number"
-                placeholder="6"
+                placeholder=" 6"
                 handleInput={(event) =>
                   setFormValues({ ...formValues, attendees: event })
                 }
@@ -44,7 +66,7 @@ const AvailableChefs = (props) => {
               <InputLabel labelName="Min-price" />
               <InputField
                 type="number"
-                placeholder="100"
+                placeholder=" 100"
                 // value="min price"
                 handleInput={(event) =>
                   setFormValues({ ...formValues, price: event })
@@ -56,7 +78,7 @@ const AvailableChefs = (props) => {
               <InputLabel labelName="Max-price" />
               <InputField
                 type="number"
-                placeholder="600"
+                placeholder=" 600"
                 // value="max price"
                 handleInput={(event) =>
                   setFormValues({ ...formValues, price2: event })
@@ -68,7 +90,7 @@ const AvailableChefs = (props) => {
               <InputLabel labelName="Where?" />
               <InputField
                 type="text"
-                placeholder="location"
+                placeholder=" Location"
                 // value="location"
                 selectInput={(event) =>
                   setFormValues({ ...formValues, location: event })
@@ -78,7 +100,7 @@ const AvailableChefs = (props) => {
 
             <p>Star Rating</p>
 
-            <InputField type="submit" />
+            <Button btnText="Submit" />
           </div>
         </section>
 
