@@ -6,14 +6,7 @@ import { firestore } from "../../firebase";
 import Button from "../../components/Button";
 
 const ChefSignUpPage = (props) => {
-  const {
-    signIn,
-    signOut,
-    user,
-    addUserToDb,
-    handleInput,
-    fetchUserData,
-  } = props;
+  const { user, addUserToDb, handleInput, fetchUserData } = props;
 
   const [chefDetails, setChefDetails] = useState({});
 
@@ -41,45 +34,114 @@ const ChefSignUpPage = (props) => {
           addUserToDb();
         }}
       />
+      <section className={styles.availableChefs}>
+        <div>
+          <InputLabel labelName="First name" />
+          <InputField
+            type="text"
+            placeholder="John"
+            // handleInput={(event) =>
+            //   setChefDetails({ ...chefDetails, FirstName: event })
+            // }
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                firstName: event,
+              })
+            }
+          />
+        </div>
 
-      <InputLabel labelName="First name" />
-      <InputField
-        type="text"
-        placeholder="John"
-        // handleInput={(event) =>
-        //   setChefDetails({ ...chefDetails, FirstName: event })
-        // }
-        selectInput={(event) =>
-          setChefDetails({
-            ...chefDetails,
-            FirstName: event,
-          })
-        }
-      />
+        <div>
+          <InputLabel labelName="Last name" />
+          <InputField
+            type="text"
+            placeholder="Smith"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                lastName: event,
+              })
+            }
+          />
+        </div>
 
-      <InputLabel labelName="Last name" />
-      <InputField
-        type="text"
-        placeholder="Smith"
-        selectInput={(event) =>
-          setChefDetails({
-            ...chefDetails,
-            LastName: event,
-          })
-        }
-      />
+        <div>
+          <InputLabel labelName="Minimum number of people you would cook for?" />
+          <InputField
+            type="number"
+            placeholder="2"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                minGuests: event,
+              })
+            }
+          />
+        </div>
 
-      <InputLabel labelName="Locations" />
-      <InputField
-        type="text"
-        placeholder="Bristol"
-        selectInput={(event) =>
-          setChefDetails({
-            ...chefDetails,
-            Location: event,
-          })
-        }
-      />
+        <div>
+          <InputLabel labelName="Maximum number of people you would cook for?" />
+          <InputField
+            type="number"
+            placeholder="12"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                maxGuests: event,
+              })
+            }
+          />
+        </div>
+
+        <div>
+          <InputLabel labelName="Locations" />
+          <InputField
+            type="text"
+            placeholder="Bristol"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                location: event,
+              })
+            }
+          />
+        </div>
+
+        <div>
+          <InputLabel labelName="Cuisines" />
+
+          <select
+            name="cuisines"
+            id="cuisines"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                location: event,
+              })
+            }
+          >
+            <option
+              value="Italian"
+              selectInput={(event) =>
+                setChefDetails({
+                  ...chefDetails,
+                  Location: event,
+                })
+              }
+            >
+              Italian
+            </option>
+            <option value="Spanish">Spanish</option>
+            <option value="French">French</option>
+            <option value="Michelin">Michelin</option>
+            <option value="Thai">Thai</option>
+            <option value="Japanese">Japanese</option>
+            <option value="Curry">Curry</option>
+            <option value="Caribean">Caribean</option>
+          </select>
+        </div>
+      </section>
 
       {/* <InputLabel labelName="Cuisines" />
 
@@ -97,36 +159,6 @@ const ChefSignUpPage = (props) => {
 
       <InputField type="checkbox" />
       <InputLabel labelName="Indian" /> */}
-
-      <select
-        name="cuisines"
-        id="cuisines"
-        selectInput={(event) =>
-          setChefDetails({
-            ...chefDetails,
-            Location: event,
-          })
-        }
-      >
-        <option
-          value="Italian"
-          selectInput={(event) =>
-            setChefDetails({
-              ...chefDetails,
-              Location: event,
-            })
-          }
-        >
-          Italian
-        </option>
-        <option value="Spanish">Spanish</option>
-        <option value="French">French</option>
-        <option value="Michelin">Michelin</option>
-        <option value="Thai">Thai</option>
-        <option value="Japanese">Japanese</option>
-        <option value="Curry">Curry</option>
-        <option value="Caribean">Caribean</option>
-      </select>
 
       {/* <InputField
         type="submit"

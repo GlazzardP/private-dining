@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import firebase from "../../firebase";
+// import firebase from "../../firebase";
 import styles from "./AvailableChefs.module.scss";
 import ChefProfile from "../ChefProfile";
 import InputLabel from "../../components/InputLabel";
@@ -8,8 +8,18 @@ import Button from "../../components/Button";
 import { firestore } from "../../firebase";
 
 const AvailableChefs = (props) => {
-  const { signIn, signOut, user, addToDb } = props;
+  const { user } = props;
   const [formValues, setFormValues] = useState({});
+
+  // Search Params
+  // const [guestNo, updateGuestNo] = useState()
+  // const [maxPrice, updateMaxPrice] = useState();
+  // const [location, updateLocation] = useState("");
+  // const [chefRating, updateChefRating] = useState(null);
+
+  // const refineChefs = () => {
+  //   allChefs.filter((chef) => chef.cost > maxPrice  && chef.location === "location" && chef && ()
+  // }
 
   const userJsx = user ? <p>User exist</p> : <p>Nope</p>;
 
@@ -20,13 +30,24 @@ const AvailableChefs = (props) => {
       .then((querySnapshot) => {
         let allChefs = [];
         querySnapshot.forEach((doc) => {
-          console.log(doc.id, " => ", doc.data());
-          allChefs.push(doc);
+          allChefs.push(doc.id.chefDetails, " => ", doc());
+          // allChefs.push(doc.id, " => ", doc);
+          // allChefs.push(doc);
         });
         console.log(allChefs);
       });
   };
-  getAllChefs();
+
+  const addUserParams = () => {
+    firestore
+      .collection("users")
+      .doc(user.uid)
+      .set({ formValues })
+      // .then(() => {
+      //   fetchUserData();
+      // })
+      .catch((error) => console.log(error));
+  };
 
   return (
     <>
@@ -56,7 +77,7 @@ const AvailableChefs = (props) => {
               <InputField
                 type="number"
                 placeholder=" 6"
-                handleInput={(event) =>
+                selectInput={(event) =>
                   setFormValues({ ...formValues, attendees: event })
                 }
               />
@@ -68,7 +89,7 @@ const AvailableChefs = (props) => {
                 type="number"
                 placeholder=" 100"
                 // value="min price"
-                handleInput={(event) =>
+                selectInput={(event) =>
                   setFormValues({ ...formValues, price: event })
                 }
               />
@@ -80,7 +101,7 @@ const AvailableChefs = (props) => {
                 type="number"
                 placeholder=" 600"
                 // value="max price"
-                handleInput={(event) =>
+                selectInput={(event) =>
                   setFormValues({ ...formValues, price2: event })
                 }
               />
@@ -100,7 +121,12 @@ const AvailableChefs = (props) => {
 
             <p>Star Rating</p>
 
-            <Button btnText="Submit" />
+            <Button
+              btnText="Submit"
+              onclick={() => {
+                addUserParams();
+              }}
+            />
           </div>
         </section>
 

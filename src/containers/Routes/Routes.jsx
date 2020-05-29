@@ -11,8 +11,6 @@ const Routes = (props) => {
 
   const [userData, setUserData] = useState({});
 
-  console.log(user);
-
   const fetchUserData = () => {
     if (user) {
       firestore

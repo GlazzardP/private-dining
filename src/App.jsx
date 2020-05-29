@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from "react";
 import styles from "./App.module.scss";
 import Button from "./components/Button";
-import InputField from "./components/InputField";
-import ChefProfile from "./containers/ChefProfile";
-import InputLabel from "./components/InputLabel";
 import Routes from "./containers/Routes";
 import { navigate, Link } from "@reach/router";
 import firebase, { provider } from "./firebase";
