@@ -28,12 +28,12 @@ const ChefSignUpPage = (props) => {
       {/* <Button btnText="Log In" handleclick={signIn} />
       <Button btnText="Log Out" handleclick={signOut} /> */}
 
-      <Button
+      {/* <Button
         btnText="ADD user to db"
         handleclick={() => {
           addUserToDb();
         }}
-      />
+      /> */}
       <section className={styles.availableChefs}>
         <div>
           <InputLabel labelName="First name" />
@@ -140,6 +140,20 @@ const ChefSignUpPage = (props) => {
             <option value="Curry">Curry</option>
             <option value="Caribean">Caribean</option>
           </select>
+        </div>
+
+        <div>
+          <InputLabel labelName="How many courses will you cook? " />
+          <InputField
+            type="number"
+            placeholder="3"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                courses: event,
+              })
+            }
+          />
         </div>
       </section>
 

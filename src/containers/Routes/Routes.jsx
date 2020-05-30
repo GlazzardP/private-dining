@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-// import styles from "./Routes.module.scss";
+import styles from "./Routes.module.scss";
 import { Router, Redirect } from "@reach/router";
 import { firestore } from "../../firebase";
 import Button from "../../components/Button";
@@ -10,6 +10,8 @@ const Routes = (props) => {
   const { signIn, signOut, user, chefDetails } = props;
 
   const [userData, setUserData] = useState({});
+
+  const userJsx = user ? <p>User exist</p> : <p>Nope</p>;
 
   const fetchUserData = () => {
     if (user) {
@@ -115,8 +117,14 @@ const Routes = (props) => {
 
   return (
     <>
-      <Button btnText="Log In" handleclick={signIn} />
-      <Button btnText="Log Out" handleclick={signOut} />
+      <nav className={styles.Navbar}>
+        <h1>BeMyChef</h1>
+        {userJsx}
+        <div>
+          <Button btnText="Log In" handleclick={signIn} />
+          <Button btnText="Log Out" handleclick={signOut} />
+        </div>
+      </nav>
 
       {/* <Button
         btnText="Add user to Db"
@@ -125,25 +133,27 @@ const Routes = (props) => {
         }}
       /> */}
 
-      <Router>
-        {/* <Redirect noThrow from="/" to="landing" /> */}
+      <div className={styles.Mainss}>
+        <Router>
+          {/* <Redirect noThrow from="/" to="landing" /> */}
 
-        <AvailableChefs
-          path="available-chefs"
-          signIn={signIn}
-          signOut={signOut}
-          user={user}
-          addUserToDb={addUserToDb}
-        />
-        <ChefSignUpPage
-          path="chef-sign-up"
-          signIn={signIn}
-          signOut={signOut}
-          user={user}
-          // addChefToDb={addChefToDb}
-        />
-      </Router>
-      {/* <p>A Glazzard Brother Enterprise</p> */}
+          <AvailableChefs
+            path="available-chefs"
+            signIn={signIn}
+            signOut={signOut}
+            user={user}
+            // addUserToDb={addUserToDb}
+          />
+
+          <ChefSignUpPage
+            path="chef-sign-up"
+            signIn={signIn}
+            signOut={signOut}
+            user={user}
+            // addChefToDb={addChefToDb}
+          />
+        </Router>
+      </div>
     </>
   );
 };

@@ -1,8 +1,17 @@
 .AvailableChefs {
   border: black solid 2px;
   display: flex;
+  justify-content: flex-start;
 
   .availableSearch {
     border: solid pink 2px;
+    display: flex;
+    flex-direction: column;
+    margin-right: 10%;
+
+    div {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 }

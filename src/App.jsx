@@ -60,6 +60,11 @@ function App() {
       />
       <InputField placeholder="Your location" type="submit" /> */}
 
+      {/* <div className={styles.signingUpIn}>
+        <Button btnText="Sing up as a customer" />
+        <Button btnText="Sing up as a Chef" />
+      </div> */}
+      <Routes signIn={signIn} signOut={signOut} user={user} />
       <Link to="/available-chefs">
         <Button btnText={"Available Chefs"} />
       </Link>
@@ -67,12 +72,6 @@ function App() {
       <Link to="/chef-sign-up">
         <Button btnText={"Chef Sign Up"} />
       </Link>
-
-      {/* <div className={styles.signingUpIn}>
-        <Button btnText="Sing up as a customer" />
-        <Button btnText="Sing up as a Chef" />
-      </div> */}
-      <Routes signIn={signIn} signOut={signOut} user={user} />
     </>
   );
 }

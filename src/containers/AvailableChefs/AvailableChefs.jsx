@@ -5,6 +5,7 @@ import ChefProfile from "../ChefProfile";
 import InputLabel from "../../components/InputLabel";
 import InputField from "../../components/InputField";
 import Button from "../../components/Button";
+import gino from "../../assets/images/gino.jpeg";
 import { firestore } from "../../firebase";
 
 const AvailableChefs = (props) => {
@@ -20,8 +21,6 @@ const AvailableChefs = (props) => {
   // const refineChefs = () => {
   //   allChefs.filter((chef) => chef.cost > maxPrice  && chef.location === "location" && chef && ()
   // }
-
-  const userJsx = user ? <p>User exist</p> : <p>Nope</p>;
 
   const getAllChefs = () => {
     firestore
@@ -61,94 +60,93 @@ const AvailableChefs = (props) => {
         }}
       /> */}
 
-      <Button
+      <section className={styles.AvailableChefs}>
+        <section className={styles.availableSearch}>
+          {/* <div className={styles.availabilityForm}> */}
+          <div>
+            <InputLabel labelName="No. of people" />
+            <InputField
+              type="number"
+              placeholder=" 6"
+              selectInput={(event) =>
+                setFormValues({ ...formValues, attendees: event })
+              }
+            />
+          </div>
+
+          <div>
+            <InputLabel labelName="Min-price" />
+            <InputField
+              type="number"
+              placeholder=" 100"
+              // value="min price"
+              selectInput={(event) =>
+                setFormValues({ ...formValues, price: event })
+              }
+            />
+          </div>
+
+          <div>
+            <InputLabel labelName="Max-price" />
+            <InputField
+              type="number"
+              placeholder=" 600"
+              // value="max price"
+              selectInput={(event) =>
+                setFormValues({ ...formValues, price2: event })
+              }
+            />
+          </div>
+
+          <div>
+            <InputLabel labelName="Where?" />
+            <InputField
+              type="text"
+              placeholder=" Location"
+              // value="location"
+              selectInput={(event) =>
+                setFormValues({ ...formValues, location: event })
+              }
+            />
+          </div>
+
+          <p>Star Rating</p>
+
+          <Button
+            btnText="Submit"
+            onclick={() => {
+              addUserParams();
+            }}
+          />
+          {/* </div> */}
+        </section>
+
+        <section>
+          {/* {getAllChefs()} */}
+          {/* <Button
         btnText="Get all chefs back"
         handleclick={() => {
           getAllChefs();
         }}
-      />
-
-      {userJsx}
-      <section className={styles.AvailableChefs}>
-        <section className={styles.availableSearch}>
-          <div className={styles.availabilityForm}>
-            <div>
-              <InputLabel labelName="No. of people" />
-              <InputField
-                type="number"
-                placeholder=" 6"
-                selectInput={(event) =>
-                  setFormValues({ ...formValues, attendees: event })
-                }
-              />
-            </div>
-
-            <div>
-              <InputLabel labelName="Min-price" />
-              <InputField
-                type="number"
-                placeholder=" 100"
-                // value="min price"
-                selectInput={(event) =>
-                  setFormValues({ ...formValues, price: event })
-                }
-              />
-            </div>
-
-            <div>
-              <InputLabel labelName="Max-price" />
-              <InputField
-                type="number"
-                placeholder=" 600"
-                // value="max price"
-                selectInput={(event) =>
-                  setFormValues({ ...formValues, price2: event })
-                }
-              />
-            </div>
-
-            <div>
-              <InputLabel labelName="Where?" />
-              <InputField
-                type="text"
-                placeholder=" Location"
-                // value="location"
-                selectInput={(event) =>
-                  setFormValues({ ...formValues, location: event })
-                }
-              />
-            </div>
-
-            <p>Star Rating</p>
-
-            <Button
-              btnText="Submit"
-              onclick={() => {
-                addUserParams();
-              }}
-            />
-          </div>
-        </section>
-
-        <section>
-          <ChefProfile
-            // image={gino}
+      /> */}
+          {/* <ChefProfile
+            image={gino}
             chefCuisines="Italian, French and Thai"
             chefName="Gino"
             chefArea="Bristol, Sardinia, Rome"
           />
           <ChefProfile
-            // image={gino}
+            image={gino}
             chefCuisines="Italian, French and Thai"
             chefName="Gino"
             chefArea="Bristol, Sardinia, Rome"
           />
           <ChefProfile
-            // image={gino}
+            image={gino}
             chefCuisines="Italian, French and Thai"
             chefName="Gino"
             chefArea="Bristol, Sardinia, Rome"
-          />
+          /> */}
         </section>
       </section>
     </>

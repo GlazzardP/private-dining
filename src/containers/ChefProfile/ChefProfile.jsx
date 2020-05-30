@@ -6,9 +6,9 @@ const ChefProfile = (props) => {
   const { image, chefName, chefCuisines, chefArea } = props;
   return (
     <div className={styles.ChefProfile}>
-      <div>
-        <img src={image} alt={chefName} />
-      </div>
+      {/* <div> */}
+      <img src={image} alt={chefName} />
+      {/* </div> */}
       <div>
         <h3>{chefName}</h3>
         <p>{chefArea}</p>
