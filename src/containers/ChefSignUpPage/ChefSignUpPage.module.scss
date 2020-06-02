@@ -1,11 +1,12 @@
 .availableChefs {
-  border: solid black 2px;
+  // border: solid black 2px;
   display: flex;
   flex-direction: column;
   width: fit-content;
+  margin: auto;
 
   div {
-    border: yellow solid 2px;
+    // border: yellow solid 2px;
     display: flex;
     justify-content: space-between;
   }

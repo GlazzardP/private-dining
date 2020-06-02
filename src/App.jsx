@@ -43,6 +43,7 @@ function App() {
   useEffect(() => {
     getUser();
   }, []);
+
   return (
     <>
       {/* <nav>

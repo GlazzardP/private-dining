@@ -115,15 +115,22 @@ const Routes = (props) => {
   //     });
   // };
 
+  const signInOutJsx = user ? (
+    <Button btnText="Log Out" handleclick={signOut} />
+  ) : (
+    <Button btnText="Log In" handleclick={signIn} />
+  );
+
   return (
     <>
       <nav className={styles.Navbar}>
         <h1>BeMyChef</h1>
-        {userJsx}
-        <div>
+        {/* {userJsx} */}
+        {signInOutJsx}
+        {/* <div>
           <Button btnText="Log In" handleclick={signIn} />
           <Button btnText="Log Out" handleclick={signOut} />
-        </div>
+        </div> */}
       </nav>
 
       {/* <Button

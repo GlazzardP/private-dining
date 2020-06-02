@@ -14,7 +14,7 @@ const ChefSignUpPage = (props) => {
     firestore
       .collection("chefs")
       .doc(user.uid)
-      .set({ chefDetails })
+      .set(chefDetails)
       .then(() => {
         fetchUserData();
       })
@@ -108,7 +108,7 @@ const ChefSignUpPage = (props) => {
           />
         </div>
 
-        <div>
+        {/* <div>
           <InputLabel labelName="Cuisines" />
 
           <select
@@ -140,7 +140,7 @@ const ChefSignUpPage = (props) => {
             <option value="Curry">Curry</option>
             <option value="Caribean">Caribean</option>
           </select>
-        </div>
+        </div> */}
 
         <div>
           <InputLabel labelName="How many courses will you cook? " />
@@ -155,6 +155,13 @@ const ChefSignUpPage = (props) => {
             }
           />
         </div>
+
+        <Button
+          btnText="Submit (DB)"
+          handleclick={() => {
+            addChefToDb();
+          }}
+        />
       </section>
 
       {/* <InputLabel labelName="Cuisines" />
@@ -180,13 +187,6 @@ const ChefSignUpPage = (props) => {
           addChefToDb();
         }}
       /> */}
-
-      <Button
-        btnText="Submit (DB)"
-        handleclick={() => {
-          addChefToDb();
-        }}
-      />
     </>
   );
 };

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 // import firebase from "../../firebase";
 import styles from "./AvailableChefs.module.scss";
 import ChefProfile from "../ChefProfile";
@@ -11,6 +11,7 @@ import { firestore } from "../../firebase";
 const AvailableChefs = (props) => {
   const { user } = props;
   const [formValues, setFormValues] = useState({});
+  const [chefsState, updateChefs] = useState([]);
 
   // Search Params
   // const [guestNo, updateGuestNo] = useState()
@@ -22,20 +23,57 @@ const AvailableChefs = (props) => {
   //   allChefs.filter((chef) => chef.cost > maxPrice  && chef.location === "location" && chef && ()
   // }
 
-  const getAllChefs = () => {
+  const getAllChefs = (location) => {
     firestore
       .collection("chefs")
+      // .where("location", "==", location)
       .get()
       .then((querySnapshot) => {
-        let allChefs = [];
-        querySnapshot.forEach((doc) => {
-          allChefs.push(doc.id.chefDetails, " => ", doc());
-          // allChefs.push(doc.id, " => ", doc);
-          // allChefs.push(doc);
-        });
-        console.log(allChefs);
+        // let allChefs = querySnapshot.docs.map((doc) => doc.data());
+        updateChefs(querySnapshot.docs.map((doc) => doc.data()));
+
+        // allChefs.forEach((chef) => {
+        //   console.log(chef);
+        //   return (
+        //     <ChefProfile chefName={chef.firstName} chefArea={chef.location} />
+        //   );
+        // });
+        // console.log(allChefs);
       });
   };
+
+  useEffect(() => {
+    getAllChefs();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  console.log(chefsState);
+
+  // const printChefs = () => {
+  //   chefsState.map((chef) => {
+  //     return (
+  //       <div>
+  //         <ChefProfile chefName={chef.firstName} chefArea={chef.location} />{" "}
+  //       </div>
+  //     );
+  //   });
+  // };
+
+  const printChefJsx = chefsState.map((chef) => {
+    return (
+      <ChefProfile
+        chefName={chef.firstName}
+        chefArea={chef.location}
+        courses={chef.courses}
+        minGuests={chef.minGuests}
+        maxGuests={chef.maxGuests}
+      />
+      // <div>
+      //   <p>${chef.firstName}</p>
+      //   <p>${chef.location}</p>
+      // </div>
+    );
+  });
 
   const addUserParams = () => {
     firestore
@@ -91,7 +129,6 @@ const AvailableChefs = (props) => {
             <InputField
               type="number"
               placeholder=" 600"
-              // value="max price"
               selectInput={(event) =>
                 setFormValues({ ...formValues, price2: event })
               }
@@ -103,7 +140,6 @@ const AvailableChefs = (props) => {
             <InputField
               type="text"
               placeholder=" Location"
-              // value="location"
               selectInput={(event) =>
                 setFormValues({ ...formValues, location: event })
               }
@@ -118,35 +154,23 @@ const AvailableChefs = (props) => {
               addUserParams();
             }}
           />
-          {/* </div> */}
         </section>
 
         <section>
           {/* {getAllChefs()} */}
-          {/* <Button
-        btnText="Get all chefs back"
-        handleclick={() => {
-          getAllChefs();
-        }}
-      /> */}
-          {/* <ChefProfile
-            image={gino}
-            chefCuisines="Italian, French and Thai"
-            chefName="Gino"
-            chefArea="Bristol, Sardinia, Rome"
-          />
-          <ChefProfile
-            image={gino}
-            chefCuisines="Italian, French and Thai"
-            chefName="Gino"
-            chefArea="Bristol, Sardinia, Rome"
-          />
-          <ChefProfile
-            image={gino}
-            chefCuisines="Italian, French and Thai"
-            chefName="Gino"
-            chefArea="Bristol, Sardinia, Rome"
+          {/* <Button 
+          btnText="Get all chefs back" handleclick=
+          {() => {
+            getAllChefs();
+          }}
           /> */}
+          {/* <Button
+            btnText="Print  chefs back"
+            handleclick={() => {
+              printChefs();
+            }}
+          /> */}
+          {printChefJsx}
         </section>
       </section>
     </>
