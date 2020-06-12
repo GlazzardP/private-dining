@@ -5,6 +5,8 @@ import { firestore } from "../../firebase";
 import Button from "../../components/Button";
 import AvailableChefs from "../AvailableChefs";
 import ChefSignUpPage from "../ChefSignUpPage";
+import ChefProfile from "../ChefProfile";
+import { navigate, Link } from "@reach/router";
 
 const Routes = (props) => {
   const { signIn, signOut, user, chefDetails } = props;
@@ -48,19 +50,6 @@ const Routes = (props) => {
   //     .catch((error) => console.log(error));
   // };
 
-  // const addToDb = (apiData) => {
-  //   firestore
-  //     .collection("users")
-  //     .doc(user.uid)
-  //     .set({
-  //       ...userData,
-  //       questionnaireAnswers: formValues,
-  //       userApiData: apiData,
-  //     })
-  //     .then(routesFetch())
-  //     .catch((error) => errorHandle(error));
-  // };
-
   useEffect(() => {
     fetchUserData();
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -78,43 +67,6 @@ const Routes = (props) => {
   //     });
   // };
 
-  // const getSubmitedTeams = () => {
-  //   firestore
-  //     .collection("team")
-  //     .get()
-  //     .then((querySnapshot) => {
-  //       let submittedTeams = [];
-  //       querySnapshot.forEach((doc) => {
-  //         // doc.data() is never undefined for query doc snapshots
-  //         console.log(doc.id, " => ", doc.data());
-  //         doc
-  //           .data()
-  //           .currentTeam.forEach((player) =>
-  //             submittedTeams.push(player.playerName)
-  //           );
-  //       });
-
-  //       submittedTeams.forEach((player) => {
-  //         if (playerAppearances.hasOwnProperty(player)) {
-  //           playerAppearances[player] = playerAppearances[player] + 1;
-  //         } else {
-  //           playerAppearances[player] = 1;
-  //         }
-  //       });
-
-  //       let arrayPlayerObj = [];
-  //       for (const playerName in playerAppearances) {
-  //         arrayPlayerObj.push({
-  //           playerName,
-  //           playerAppearances: playerAppearances[playerName],
-  //         });
-  //       }
-  //       addPickedPlayers(arrayPlayerObj);
-
-  //       // const teamsSubmitted = submittedTeams.length / 15;
-  //     });
-  // };
-
   const signInOutJsx = user ? (
     <Button btnText="Log Out" handleclick={signOut} />
   ) : (
@@ -126,11 +78,20 @@ const Routes = (props) => {
       <nav className={styles.Navbar}>
         <h1>BeMyChef</h1>
         {/* {userJsx} */}
-        {signInOutJsx}
         {/* <div>
           <Button btnText="Log In" handleclick={signIn} />
           <Button btnText="Log Out" handleclick={signOut} />
         </div> */}
+        <div>
+          <Link to="/available-chefs">
+            <Button btnText={"Available Chefs"} />
+          </Link>
+
+          <Link to="/chef-sign-up">
+            <Button btnText={"Chef Sign Up"} />
+          </Link>
+        </div>
+        {signInOutJsx}
       </nav>
 
       {/* <Button
@@ -158,6 +119,13 @@ const Routes = (props) => {
             signOut={signOut}
             user={user}
             // addChefToDb={addChefToDb}
+          />
+
+          <ChefProfile
+            path="chef-profile"
+            signIn={signIn}
+            signOut={signOut}
+            user={user}
           />
         </Router>
       </div>

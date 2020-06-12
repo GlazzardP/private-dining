@@ -1,4 +1,11 @@
 .InputField {
   margin: 5px;
   border: solid 1px gray;
+  border-radius: 5px;
+  width: 100px;
+  // transition: width 0.4s ease-in-out;
+}
+.InputField:focus {
+  border: red solid 2px;
+  width: 100%;
 }

@@ -21,20 +21,23 @@ const ChefSignUpPage = (props) => {
       .catch((error) => console.log(error));
   };
 
-  console.log(chefDetails);
-
   return (
     <>
-      {/* <Button btnText="Log In" handleclick={signIn} />
-      <Button btnText="Log Out" handleclick={signOut} /> */}
-
-      {/* <Button
-        btnText="ADD user to db"
-        handleclick={() => {
-          addUserToDb();
-        }}
-      /> */}
       <section className={styles.availableChefs}>
+        <div>
+          <InputLabel labelName="Upload your photo" />
+          <InputField
+            type="text"
+            placeholder="+"
+
+            // selectInput={(event) =>
+            //   setChefDetails({
+            //     ...chefDetails,
+            //     firstName: event,
+            //   })
+            // }
+          />
+        </div>
         <div>
           <InputLabel labelName="First name" />
           <InputField
@@ -154,6 +157,20 @@ const ChefSignUpPage = (props) => {
               })
             }
           />
+        </div>
+
+        <div>
+          <InputLabel labelName="What cuisine are you happy to cook?" />
+        </div>
+        <div>
+          <InputLabel labelName="Chinese" />
+          <InputField type="checkbox" />
+          <InputLabel labelName="French" />
+          <InputField type="checkbox" />
+          <InputLabel labelName="Italian" />
+          <InputField type="checkbox" />
+          <InputLabel labelName="Spanish" />
+          <InputField type="checkbox" />
         </div>
 
         <Button
