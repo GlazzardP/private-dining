@@ -16,12 +16,12 @@ const AvailableChefs = (props) => {
 
   const [location, updateLocation] = useState("");
 
-  console.log(chefsState);
+  console.log(location);
 
   const getAllChefs = () => {
     firestore
       .collection("chefs")
-      // .where("location", "==", location)
+      .where("location", "==", location)
       .get()
       .then((querySnapshot) => {
         // let allChefs = querySnapshot.docs.map((doc) => doc.data());

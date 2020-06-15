@@ -10,15 +10,15 @@ const ChefPage = (props) => {
     selectedChef,
     toggleSelectedChef,
     chefName,
+    chefObject,
   } = props;
   return (
     <>
-      <h2>{name}</h2>
-      <p>Previous Bookings:{bookings}</p>
+      {/* <h2>{chefObject.name}</h2> */}
+      <p>{bookings}</p>
       <p>{location}</p>
       {/* <p>{reviewsJsx}</p> */}
       <p>{chefName}</p>
-      <p>Test test test </p>
     </>
   );
 };

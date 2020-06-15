@@ -26,7 +26,7 @@ const ChefProfile = (props) => {
 
       <div>
         <h3>{chefName}</h3>
-        <p>{chefObject.firstName}</p>
+        {/* <p>{chefObject.firstName}</p> */}
         <p>Recommended courses: {courses}</p>
         <p>
           Guests: {minGuests} - {maxGuests}
@@ -37,7 +37,7 @@ const ChefProfile = (props) => {
         {/* <Button btnText="Profile" /> */}
         <Button
           btnText="More Info"
-          onClick={() => toggleSelectedChef(chefObject)}
+          onClick={() => toggleSelectedChef({ chefObject })}
         />
       </div>
     </div>
