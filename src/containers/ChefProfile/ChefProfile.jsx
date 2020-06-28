@@ -17,8 +17,7 @@ const ChefProfile = (props) => {
     selectedChef,
   } = props;
 
-  console.log(selectedChef);
-  console.log(chefObject);
+  // console.log(chefObject);
 
   return (
     <div className={styles.ChefProfile}>
@@ -37,7 +36,7 @@ const ChefProfile = (props) => {
         {/* <Button btnText="Profile" /> */}
         <Button
           btnText="More Info"
-          onClick={() => toggleSelectedChef({ chefObject })}
+          onClick={() => toggleSelectedChef({ chef })}
         />
       </div>
     </div>

@@ -18,10 +18,12 @@ const AvailableChefs = (props) => {
 
   console.log(location);
 
+  const locationJsx = location ? location : "";
+
   const getAllChefs = () => {
     firestore
       .collection("chefs")
-      .where("location", "==", location)
+      // .where("location", "==", location)
       .get()
       .then((querySnapshot) => {
         // let allChefs = querySnapshot.docs.map((doc) => doc.data());
@@ -35,6 +37,8 @@ const AvailableChefs = (props) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  console.log(selectedChef);
+
   const printChefJsx = chefsState.map((chef) => {
     return (
       <ChefProfile
@@ -43,9 +47,10 @@ const AvailableChefs = (props) => {
         courses={chef.courses}
         minGuests={chef.minGuests}
         maxGuests={chef.maxGuests}
-        key={chef.lastName}
-        chefObject={chef}
+        chef={chef}
         selectedChef={selectedChef}
+        toggleSelectedChef={toggleSelectedChef}
+        key={chef.firstName}
         path="/profile"
       />
       // <div>
@@ -115,10 +120,10 @@ const AvailableChefs = (props) => {
         <Button btnText="Update Chefs" onclick={() => getAllChefs()} />
       </section>
       <section>{printChefJsx}</section>
-      <section>
+      <section className={styles.chefPage}>
         {/* <ChefProfile /> */}
         <ChefPage
-          toggleSelectedChe={toggleSelectedChef}
+          toggleSelectedChef={toggleSelectedChef}
           selectedChef={selectedChef}
           // chef={chef}
         />
