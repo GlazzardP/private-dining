@@ -16,14 +16,17 @@ const AvailableChefs = (props) => {
 
   const [location, updateLocation] = useState("");
 
-  console.log(location);
+  // console.log(location);
+  console.log(selectedChef);
 
-  const locationJsx = location ? location : "";
+  // console.log(locationJsx);
 
   const getAllChefs = () => {
+    console.log("Another");
+
     firestore
       .collection("chefs")
-      // .where("location", "==", location)
+      .where("location", "==", location)
       .get()
       .then((querySnapshot) => {
         // let allChefs = querySnapshot.docs.map((doc) => doc.data());
@@ -35,9 +38,7 @@ const AvailableChefs = (props) => {
   useEffect(() => {
     getAllChefs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
-  console.log(selectedChef);
+  }, [location]);
 
   const printChefJsx = chefsState.map((chef) => {
     return (
@@ -51,7 +52,7 @@ const AvailableChefs = (props) => {
         selectedChef={selectedChef}
         toggleSelectedChef={toggleSelectedChef}
         key={chef.firstName}
-        path="/profile"
+        // path="/profile"
       />
       // <div>
       //   <p>${chef.firstName}</p>
@@ -60,19 +61,19 @@ const AvailableChefs = (props) => {
     );
   });
 
-  const addUserParams = () => {
-    firestore
-      .collection("users")
-      .doc(user.uid)
-      .set({ formValues })
-      // .then(() => {
-      //   fetchUserData();
-      // })
-      .catch((error) => console.log(error));
-  };
+  // const addUserParams = () => {
+  //   firestore
+  //     .collection("users")
+  //     .doc(user.uid)
+  //     .set({ formValues })
+  //     // .then(() => {
+  //     //   fetchUserData();
+  //     // })
+  //     .catch((error) => console.log(error));
+  // };
 
   return (
-    <section className={styles.AvailableChefs}>
+    <>
       <section className={styles.availableSearch}>
         <div>
           <InputLabel labelName="No. of people" />
@@ -119,16 +120,16 @@ const AvailableChefs = (props) => {
 
         <Button btnText="Update Chefs" onclick={() => getAllChefs()} />
       </section>
-      <section>{printChefJsx}</section>
-      <section className={styles.chefPage}>
-        {/* <ChefProfile /> */}
-        <ChefPage
-          toggleSelectedChef={toggleSelectedChef}
-          selectedChef={selectedChef}
-          // chef={chef}
-        />
+      <section className={styles.AvailableChefs}>
+        <section>{printChefJsx}</section>
+        <section className={styles.chefPage}>
+          <ChefPage
+            toggleSelectedChef={toggleSelectedChef}
+            selectedChef={selectedChef}
+          />
+        </section>
       </section>
-    </section>
+    </>
   );
 };
 

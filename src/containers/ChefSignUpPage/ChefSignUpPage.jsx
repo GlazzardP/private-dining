@@ -12,8 +12,10 @@ const ChefSignUpPage = (props) => {
   const [chefDetails, setChefDetails] = useState({});
 
   const [image, setImage] = useState(null);
-  const [progress, setProgress] = useState();
+  // const [progress, setProgress] = useState();
   const [url, setUrl] = useState();
+
+  console.log(chefDetails);
 
   const addChefToDb = () => {
     firestore
@@ -34,7 +36,7 @@ const ChefSignUpPage = (props) => {
       setImage(e.target.files[0]);
       // console.log(event.target.files[0]);
     } else {
-      return console.log("nah");
+      return console.log("Issue with file selector");
     }
   };
 
@@ -78,18 +80,6 @@ const ChefSignUpPage = (props) => {
       <section className={styles.availableChefs}>
         <div>
           <InputForm type="file" onChange={fileSelectHandler} />
-
-          {/* <InputLabel labelName="Upload your photo" /> */}
-          {/* <InputField
-            type="file"
-            // handleInput={() => {
-            //   fileSelectHandler();
-            // }}
-            // selectInput={(event) => updateState({ event })}
-            // handleInput={handleImageAsFile()}
-            // selectInput={(e) => fileSelectHandler(e)}
-            onChange={fileSelectHandler}
-          /> */}
         </div>
         <img src={url} alt="Test" />
         {/* {imageJsx} */}
@@ -160,7 +150,7 @@ const ChefSignUpPage = (props) => {
             selectInput={(event) =>
               setChefDetails({
                 ...chefDetails,
-                location: event,
+                location: [event],
               })
             }
           />
@@ -232,6 +222,12 @@ const ChefSignUpPage = (props) => {
           <InputField
             type="textarea"
             placeholder="Tell use a little about yourself"
+            selectInput={(event) =>
+              setChefDetails({
+                ...chefDetails,
+                bio: event,
+              })
+            }
             className={styles.aboutMe}
           />
         </div>

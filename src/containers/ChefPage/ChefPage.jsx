@@ -3,17 +3,20 @@ import styles from "./ChefPage.module.scss";
 import ChefProfile from "../ChefProfile";
 
 const ChefPage = (props) => {
-  const { selectedChef, chef } = props;
-
-  console.log(selectedChef);
+  const { selectedChef } = props;
 
   return (
     <>
-      {/* <h2>{chefObject.name}</h2> */}
-      <p>Bookings: {selectedChef.bookings}</p>
+      <h2>{selectedChef.name}</h2>
+
+      <p>Name:{selectedChef.firstName}</p>
+
       <p>Location: {selectedChef.location}</p>
       {/* <p>{reviewsJsx}</p> */}
-      <p>Name:{selectedChef.chefName}</p>
+      <p>
+        Guests: {selectedChef.minGuests} - {selectedChef.maxGuests}
+      </p>
+      <p>{selectedChef.bio}</p>
     </>
   );
 };

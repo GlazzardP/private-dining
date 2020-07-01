@@ -10,19 +10,19 @@
     // background-color: whitesmoke;
   }
 
-  .availableSearch {
-    border: solid pink 2px;
-    display: flex;
-    flex-direction: column;
-    // margin-right: 10%;
-
-    div {
-      display: flex;
-      justify-content: space-between;
-    }
-  }
-
   .chefPage {
     border: solid red 2px;
+  }
+}
+
+.availableSearch {
+  border: solid pink 2px;
+  display: flex;
+  // flex-direction: column;
+  // margin-right: 10%;
+
+  div {
+    display: flex;
+    justify-content: space-between;
   }
 }
