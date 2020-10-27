@@ -81,8 +81,8 @@ const ChefSignUpPage = (props) => {
         <div>
           <InputForm type="file" onChange={fileSelectHandler} />
         </div>
-        <img src={url} alt="Test" />
-        {/* {imageJsx} */}
+        {/* <img src={url} alt="Test" /> */}
+        {imageJsx}
         <div>
           <InputLabel labelName="First name" />
           <InputField
@@ -208,20 +208,21 @@ const ChefSignUpPage = (props) => {
           <InputLabel labelName="What cuisine are you happy to cook?" />
         </div>
         <div>
-          <InputLabel labelName="Chinese" />
-          <InputField type="checkbox" />
-          <InputLabel labelName="French" />
+          {/* <InputLabel labelName="Chinese" /> */}
+          <InputField type="text" placeholder=" French" />
+          <Button btnText="add" />
+          {/* <InputLabel labelName="French" />
           <InputField type="checkbox" />
           <InputLabel labelName="Italian" />
           <InputField type="checkbox" />
           <InputLabel labelName="Spanish" />
-          <InputField type="checkbox" />
+          <InputField type="checkbox" /> */}
         </div>
 
         <div>
           <InputField
             type="textarea"
-            placeholder="Tell use a little about yourself"
+            placeholder=" Tell use a little about yourself"
             selectInput={(event) =>
               setChefDetails({
                 ...chefDetails,
@@ -237,9 +238,9 @@ const ChefSignUpPage = (props) => {
         </div>
         <div>
           <InputLabel labelName="Yes" />
-          <InputField type="checkbox" />
-          <InputLabel labelName="Yes" />
-          <InputField type="checkbox" />
+          <InputField type="radio" name="bookings" />
+          <InputLabel labelName="No" />
+          <InputField type="radio" name="bookings" />
         </div>
 
         <div>
@@ -247,9 +248,9 @@ const ChefSignUpPage = (props) => {
         </div>
         <div>
           <InputLabel labelName="Yes" />
-          <InputField type="checkbox" />
-          <InputLabel labelName="Yes" />
-          <InputField type="checkbox" />
+          <InputField type="radio" />
+          <InputLabel labelName="No" />
+          <InputField type="radio" />
         </div>
 
         <div>
